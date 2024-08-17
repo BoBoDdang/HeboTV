@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebo TV</title>
+    <link rel="stylesheet" href="assets/splash.css">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="assets/player.css">
+    <link rel="stylesheet" href="assets/icon.css">
+    <script src="scripts/video.js"></script>
+    <script src="scripts/hls.js"></script>
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/wave.js" defer></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="splash">
+            <span>Hebo TV</span>
+        </div>
+        <div id="preview" class="hidden">
+            <div class="spotlight"></div>
+            <div class="fade"></div>
+            <img id="bg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
+            <div class="info">
+                <span id="title"></span>
+                <span id="subtitle"></span>
+                <span id="description"></span>
+                <button id="play">
+                    <span class="icon">&#xe037;</span>
+                    재생
+                </button>
+            </div>
+        </div>
+        <div id="player" class="hidden">
+            <video id="video"></video>
+        </div>
+    </div>
+</body>
+
+</html>

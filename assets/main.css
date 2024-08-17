@@ -1,0 +1,220 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
+:root {
+    background: #000;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hidden{
+    display: none !important;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.fadeout {
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.fade {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.7) 60%);
+    width: 300%;
+    height: 300%;
+    z-index: 50;
+    position: absolute;
+    left: 90%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spotlight {
+    background: linear-gradient(45deg, #0028dc, #36cae4 50%, #0004e1);
+    bottom: -40vh;
+    filter: blur(30vh);
+    height: 60vh;
+    left: 0;
+    opacity: .8;
+    position: fixed;
+    right: 0;
+}
+
+#bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.info {
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 500px;
+    z-index: 100;
+}
+
+#title {
+    font-weight: 500;
+    font-size: 2.5em;
+}
+
+#subtitle {
+    font-weight: 300;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #d4d4d4;
+}
+
+
+#description {
+    white-space: pre-wrap;
+    color: #d2d2d2;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 10px;
+    transform: translate(-10px, -10px);
+}
+
+#play {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px 50px;
+    font-size: 18px;
+    gap: 5px;
+    transition: all 0.1s ease;
+
+    &>.icon {
+        font-size: 32px;
+        margin: -3px -7px;
+    }
+
+    &:hover {
+        filter: brightness(0.9);
+    }
+
+    &:active {
+        filter: brightness(0.8);
+    }
+}
+
+#preview.right {
+    &>.fade {
+        left: 10%;
+    }
+
+    &>.info {
+        left: unset;
+        right: 100px;
+        align-items: flex-end;
+    }
+}
+
+#preview.center {
+    &>.fade {
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0) 60%);
+        left: 50%;
+    }
+
+    &>.info {
+        left: 50%;
+        align-items: center;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-aspect-ratio: 1) {
+
+    html,
+    body {
+        overflow: unset;
+    }
+
+    #preview {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #bg {
+        position: initial;
+        transform: none;
+        height: unset;
+        mask-image: linear-gradient(to bottom, #000 80%, transparent);
+        aspect-ratio: 16 / 9;
+    }
+
+    .info {
+        position: initial;
+        transform: unset;
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom: 100px;
+        padding-top: 0;
+    }
+
+    #description {
+        backdrop-filter: none;
+        transform: none;
+        padding: 0;
+    }
+
+    .spotlight {
+        display: none;
+    }
+
+    .fade {
+        display: none;
+    }
+
+    #play {
+        position: fixed;
+        bottom: 10px;
+        width: calc(100% - 30px);
+        justify-content: center;
+    }
+
+    .wrapper {
+        overflow: unset;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    #description {
+        display: none;
+    }
+
+    html,
+    body {
+        height: 100dvh;
+    }
+}
