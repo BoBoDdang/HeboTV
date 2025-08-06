@@ -1,5 +1,5 @@
 const $ = (id) => document.getElementById(id);
-const API = 'https://tv-api.machang.kr:1118';
+const API = 'https://tv-api.machang.kr';
 let streamData;
 
 (async () => {
