@@ -1,5 +1,6 @@
 const $ = (id) => document.getElementById(id);
-let previewData;
+const API = 'https://api.tv.machang.kr:1118';
+let streamData;
 
 (async () => {
     await loadData();
@@ -19,7 +20,7 @@ async function startVideo() {
     });
 
     player.src({
-        src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+        src:  streamData.streamUrl,
         type: 'application/x-mpegURL'
     });
     player.play();
@@ -29,18 +30,18 @@ async function startVideo() {
 }
 
 async function loadData() {
-    previewData = await (await fetch('http://localhost:3000/info')).json();
+    streamData = await (await fetch(`${API}/info`)).json();
 }
 
 async function createPreview() {
     $('splash').classList.add('hidden');
-    let data = previewData.info;
+    let data = streamData.info;
     $('title').textContent = data.title;
     if (data.subtitle) $('subtitle').textContent = data.subtitle;
     else $('subtitle').remove();
     if (data.description) $('description').textContent = data.description;
     else $('description').remove();
-    if (data.image) $('bg').src = `http://localhost:3000/images/${data.image}`;
+    if (data.image) $('bg').src = `${API}/images/${data.image}`;
     else {
         $('bg').remove();
         $('preview').style.paddingTop = '20px';
