@@ -20,7 +20,7 @@ body {
     height: 100%;
 }
 
-.hidden{
+.hidden {
     display: none !important;
 }
 
@@ -66,6 +66,30 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: fade-in 1s ease-out forwards;
+    opacity: 0%;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+@keyframes bounce {
+    from {
+        translate: 0 20px;
+        opacity: 0%;
+    }
+
+    to {
+        translate: 0 0;
+        opacity: 100%;
+    }
 }
 
 .info {
@@ -83,6 +107,8 @@ body {
 #title {
     font-weight: 500;
     font-size: 2.5em;
+    opacity: 0;
+    animation: bounce 0.3s cubic-bezier(0.25, 0.46, 0.37, 1.03) forwards;
 }
 
 #subtitle {
@@ -90,6 +116,8 @@ body {
     font-size: 1.5em;
     margin-bottom: 15px;
     color: #d4d4d4;
+    opacity: 0;
+    animation: bounce 0.3s cubic-bezier(0.25, 0.46, 0.37, 1.03) 0.1s forwards;
 }
 
 
@@ -100,6 +128,8 @@ body {
     border-radius: 15px;
     padding: 10px;
     transform: translate(-10px, -10px);
+    opacity: 0;
+    animation: bounce 0.3s cubic-bezier(0.25, 0.46, 0.37, 1.03) 0.2s forwards;
 }
 
 #play {
@@ -112,6 +142,8 @@ body {
     font-size: 18px;
     gap: 5px;
     transition: all 0.1s ease;
+    opacity: 0;
+    animation: bounce 0.3s cubic-bezier(0.25, 0.46, 0.37, 1.03) 0.3s forwards;
 
     &>.icon {
         font-size: 32px;
@@ -198,7 +230,7 @@ body {
 
     #play {
         position: fixed;
-        bottom: 10px;
+        bottom: 20px;
         width: calc(100% - 30px);
         justify-content: center;
     }

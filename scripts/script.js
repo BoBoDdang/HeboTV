@@ -1,8 +1,10 @@
 const $ = (id) => document.getElementById(id);
+let previewData;
 
 (async () => {
-    // createPreview();
-    // $('play').onclick = startVideo;
+    await loadData();
+    createPreview();
+    $('play').onclick = startVideo;
 })();
 
 async function startVideo() {
@@ -18,8 +20,7 @@ async function startVideo() {
 
     player.src({
         src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
-        type: 'application/x-mpegURL',
-        // withCredentials: true
+        type: 'application/x-mpegURL'
     });
     player.play();
 
@@ -27,17 +28,22 @@ async function startVideo() {
     window.p = player;
 }
 
+async function loadData() {
+    previewData = await (await fetch('http://localhost:3000/info')).json();
+}
+
 async function createPreview() {
-    let data = await (await fetch('data.json')).json();
+    $('splash').classList.add('hidden');
+    let data = previewData.info;
     $('title').textContent = data.title;
     if (data.subtitle) $('subtitle').textContent = data.subtitle;
     else $('subtitle').remove();
     if (data.description) $('description').textContent = data.description;
     else $('description').remove();
-    if (data.image) $('bg').src = data.image;
+    if (data.image) $('bg').src = `http://localhost:3000/images/${data.image}`;
     else {
         $('bg').remove();
         $('preview').style.paddingTop = '20px';
     }
-    $('preview').classList.remove('hidden');
+    $('preview').classList.remove('hidden'); //TODO: ADD ALIGNMENT !!!!!!!!
 }
