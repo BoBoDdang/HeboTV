@@ -4,11 +4,11 @@ const video = document.getElementById('video');
 let volumeFade = 0;
 let muted = localStorage.getItem('muted') == 'true';
 let volume = parseFloat(localStorage.getItem('volume'));
+if (isNaN(volume)) volume = 0.8;
 
 let streamData;
 
 (async () => {
-    if (volume == NaN) volume = 0.8;
     $('volume-range').value = volume * 100 * +!muted;
     volumeRange.style.setProperty('--val', `${volume * 100 * +!muted}%`);
     if (volume == 0) muted = true;
