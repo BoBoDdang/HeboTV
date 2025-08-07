@@ -1,6 +1,9 @@
 const $ = (id) => document.getElementById(id);
 const API = 'https://tv-api.machang.kr';
+/** @type HTMLVideoElement */
 const video = document.getElementById('video');
+let volumeFade = 0;
+let volume = parseFloat(localStorage.getItem('volume')) || 0.8;
 
 let streamData;
 
@@ -15,9 +18,17 @@ async function startVideo() {
     setTimeout(() => {
         $('preview').remove();
     }, 1000);
-    $('player').classList.remove('hidden');
+    $('player').classList.remove('background');
 
-    video.play();
+    let task = setInterval(() => {
+        volumeFade += 0.005;
+        video.volume = volume * volumeFade;
+        if(volumeFade>=1){
+            volumeFade = 1;
+            clearInterval(task);
+        }
+    }, 20);
+
 }
 
 async function loadData() {
@@ -30,6 +41,8 @@ async function loadData() {
         hls.loadSource(streamData.streamUrl);
         hls.attachMedia(video);
     }
+    video.volume = 0;
+    video.play();
 }
 
 async function createPreview() {
