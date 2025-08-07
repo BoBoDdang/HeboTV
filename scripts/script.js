@@ -37,7 +37,6 @@ async function startVideo() {
             clearInterval(task);
         }
     }, 50);
-
 }
 
 function updateVolume() {
