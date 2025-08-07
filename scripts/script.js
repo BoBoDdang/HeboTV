@@ -19,15 +19,16 @@ async function startVideo() {
         $('preview').remove();
     }, 1000);
     $('player').classList.remove('background');
+    document.body.style.overflow = 'hidden';
 
     let task = setInterval(() => {
-        volumeFade += 0.005;
+        volumeFade += 0.04;
         video.volume = volume * volumeFade;
         if(volumeFade>=1){
             volumeFade = 1;
             clearInterval(task);
         }
-    }, 20);
+    }, 50);
 
 }
 
