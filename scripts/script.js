@@ -1,5 +1,7 @@
 const $ = (id) => document.getElementById(id);
 const API = 'https://tv-api.machang.kr';
+const video = document.getElementById('video');
+
 let streamData;
 
 (async () => {
@@ -15,22 +17,19 @@ async function startVideo() {
     }, 1000);
     $('player').classList.remove('hidden');
 
-    let player = videojs('video', {
-        autoplay: true
-    });
-
-    player.src({
-        src:  streamData.streamUrl,
-        type: 'application/x-mpegURL'
-    });
-    player.play();
-
-
-    window.p = player;
+    video.play();
 }
 
 async function loadData() {
     streamData = await (await fetch(`${API}/info`)).json();
+
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamData.streamUrl;
+    } else if (Hls.isSupported()) {
+        let hls = new Hls();
+        hls.loadSource(streamData.streamUrl);
+        hls.attachMedia(video);
+    }
 }
 
 async function createPreview() {
@@ -41,10 +40,11 @@ async function createPreview() {
     else $('subtitle').remove();
     if (data.description) $('description').textContent = data.description;
     else $('description').remove();
-    if (data.image) $('bg').src = `${API}/images/${data.image}`;
+    if (data.image) $('bg').style.backgroundImage = `url('${API}/images/${data.image}')`;
     else {
         $('bg').remove();
         $('preview').style.paddingTop = '20px';
     }
-    $('preview').classList.remove('hidden'); //TODO: ADD ALIGNMENT !!!!!!!!
+    $('preview').classList.add(data.alignment.toLowerCase());
+    $('preview').classList.remove('hidden');
 }

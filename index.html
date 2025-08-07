@@ -2,44 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Hebo TV</title>
-    <link rel="stylesheet" href="assets/splash.css">
-    <link rel="stylesheet" href="assets/main.css">
-    <link rel="stylesheet" href="assets/player.css">
-    <link rel="stylesheet" href="assets/icon.css">
-    <link rel="shortcut icon" href="assets/icon.png" type="image/png">
-    <script src="scripts/video.js"></script>
-    <script src="scripts/hls.js"></script>
-    <script src="scripts/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hebo TV</title>
+  <link rel="stylesheet" href="assets/splash.css">
+  <link rel="stylesheet" href="assets/main.css">
+  <link rel="stylesheet" href="assets/player.css">
+  <link rel="stylesheet" href="assets/icon.css">
+  <link rel="shortcut icon" href="assets/icon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div id="splash">
-            <img src="assets/splash.png">
-            <svg xmlns="http://www.w3.org/2000/svg" class="splash-spinner" viewBox="0 0 66 66"><circle class="splash-spinner-path" fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
-        </div>
-        <div id="preview" class="hidden">
-            <div class="spotlight"></div>
-            <div class="fade"></div>
-            <img id="bg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
-            <div class="info">
-                <span id="title"></span>
-                <span id="subtitle"></span>
-                <span id="description"></span>
-                <button id="play">
-                    <span class="icon">&#xe037;</span>
-                    재생
-                </button>
-            </div>
-        </div>
-        <div id="player" class="hidden">
-            <video id="video"></video>
-        </div>
+  <div class="wrapper">
+    <div id="splash">
+      <img src="assets/splash.png">
+      <svg xmlns="http://www.w3.org/2000/svg" class="splash-spinner" viewBox="0 0 66 66">
+        <circle class="splash-spinner-path" fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
     </div>
+    <div id="preview" class="hidden">
+      <div class="spotlight"></div>
+      <div class="fade"></div>
+      <div id="bg"></div>
+      <div class="info">
+        <span id="title"></span>
+        <span id="subtitle"></span>
+        <span id="description"></span>
+        <button id="play">
+          <span class="icon">&#xe037;</span>
+          재생
+        </button>
+      </div>
+    </div>
+    <div id="player" class="hidden">
+      <video id="video"></video>
+    </div>
+  </div>
 </body>
 
 </html>

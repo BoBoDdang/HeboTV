@@ -59,9 +59,11 @@ body {
 }
 
 #bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -168,7 +170,12 @@ body {
         left: unset;
         right: 100px;
         align-items: flex-end;
+
+        &>#description {
+            transform: translate(10px, -10px);
+        }
     }
+
 }
 
 #preview.center {
@@ -181,6 +188,10 @@ body {
         left: 50%;
         align-items: center;
         transform: translate(-50%, -50%);
+
+        &>#description {
+            transform: translate(0, -10px);
+        }
     }
 }
 
@@ -206,17 +217,18 @@ body {
 
     .info {
         position: initial;
-        transform: unset;
+        transform: unset !important;
         padding: 15px;
         width: 100%;
         box-sizing: border-box;
         padding-bottom: 100px;
         padding-top: 0;
+        align-items: flex-start !important;
     }
 
     #description {
         backdrop-filter: none;
-        transform: none;
+        transform: none !important;
         padding: 0;
     }
 
