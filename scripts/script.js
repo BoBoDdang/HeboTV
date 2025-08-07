@@ -1,13 +1,19 @@
-const $ = (id) => document.getElementById(id);
 const API = 'https://tv-api.machang.kr';
 /** @type HTMLVideoElement */
 const video = document.getElementById('video');
 let volumeFade = 0;
-let volume = parseFloat(localStorage.getItem('volume')) || 0.8;
+let muted = localStorage.getItem('muted') == 'true';
+let volume = parseFloat(localStorage.getItem('volume'));
+if (volume == NaN) volume = 0.8;
 
 let streamData;
 
 (async () => {
+    $('volume-range').value = volume * 100 * +!muted;
+    volumeRange.style.setProperty('--val', `${volume * 100* +!muted}%`);
+    if (volume == 0) muted = true;
+    changeIcon(volumeButton, muted ? 'e710' : 'e050');
+
     await loadData();
     createPreview();
     $('play').onclick = startVideo;
@@ -21,15 +27,21 @@ async function startVideo() {
     $('player').classList.remove('background');
     document.body.style.overflow = 'hidden';
 
+    hideUI();
+
     let task = setInterval(() => {
         volumeFade += 0.04;
-        video.volume = volume * volumeFade;
-        if(volumeFade>=1){
+        updateVolume();
+        if (volumeFade >= 1) {
             volumeFade = 1;
             clearInterval(task);
         }
     }, 50);
 
+}
+
+function updateVolume() {
+    video.volume = volume * volumeFade * +!muted;
 }
 
 async function loadData() {
@@ -44,6 +56,8 @@ async function loadData() {
     }
     video.volume = 0;
     video.play();
+
+    registerVideoEvents(video);
 }
 
 async function createPreview() {

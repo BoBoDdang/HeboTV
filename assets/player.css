@@ -5,15 +5,126 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
     display: flex;
+    z-index: 1;
 }
 
 #video {
     width: 100%;
+    z-index: 1;
     height: 100%;
 }
 
-.background{
+.background {
     opacity: 0;
+}
+
+.controls {
+    z-index: 3;
+    position: relative;
+    display: flex;
+    padding: 0 15px 10px 15px;
+
+    &>button {
+        background: none;
+        cursor: pointer;
+        border: none;
+        color: white;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        outline: none;
+    }
+}
+
+#control-bar {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+#control-bar.visible {
+    pointer-events: unset;
+    opacity: 1;
+}
+
+.controls-bg {
+    z-index: 1;
+    width: 100%;
+    height: 200px;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.013) 8.1%, hsla(0, 0%, 0%, 0.049) 15.5%, hsla(0, 0%, 0%, 0.104) 22.5%, hsla(0, 0%, 0%, 0.175) 29%, hsla(0, 0%, 0%, 0.259) 35.3%, hsla(0, 0%, 0%, 0.352) 41.2%, hsla(0, 0%, 0%, 0.45) 47.1%, hsla(0, 0%, 0%, 0.55) 52.9%, hsla(0, 0%, 0%, 0.648) 58.8%, hsla(0, 0%, 0%, 0.741) 64.7%, hsla(0, 0%, 0%, 0.825) 71%, hsla(0, 0%, 0%, 0.896) 77.5%, hsla(0, 0%, 0%, 0.951) 84.5%, hsla(0, 0%, 0%, 0.987) 91.9%, hsl(0, 0%, 0%) 100%) repeat-x bottom left;
+}
+
+#live-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+
+    &>svg {
+        fill: #cbcbcb;
+        width: 12px;
+    }
+
+    &>span {
+        color: #a1a1a1;
+        font-size: 14px;
+        line-height: 0;
+    }
+}
+
+#live-btn.live {
+    &>svg {
+        fill: rgb(255, 56, 56);
+    }
+
+    &>span {
+        color: white;
+    }
+}
+
+#volume-btn {
+    margin-right: 5px;
+}
+
+#volume-range {
+    width: 100px;
+    margin: 0;
+    appearance: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    --val: 50%;
+
+    &::-webkit-slider-runnable-track {
+        background: white;
+        height: 4px;
+        border-radius: 4px;
+        background: linear-gradient(to right, white var(--val), gray var(--val));
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 4px;
+        width: 4px;
+        background: white;
+        border-radius: 50%;
+        transition: scale 0.1s ease;
+    }
+
+
+}
+
+#volume-range:hover::-webkit-slider-thumb {
+    scale: 3;
+}
+
+#fullscreen-btn {
+    margin-left: auto;
 }
