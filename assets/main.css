@@ -47,17 +47,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.spotlight {
-    background: linear-gradient(45deg, #0028dc, #36cae4 50%, #0004e1);
-    bottom: -40vh;
-    filter: blur(30vh);
-    height: 60vh;
-    left: 0;
-    opacity: .8;
-    position: fixed;
-    right: 0;
-}
-
 #bg {
     background-size: cover;
     background-repeat: no-repeat;
@@ -231,10 +220,6 @@ body {
         backdrop-filter: none;
         transform: none !important;
         padding: 0;
-    }
-
-    .spotlight {
-        display: none;
     }
 
     .fade {
