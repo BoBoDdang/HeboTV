@@ -4,11 +4,13 @@ let live = false;
 function registerVideoEvents(video) {
   video.ondurationchange = checkLiveStatus;
   video.onseeking = () => checkLiveStatus;
+
+  checkLiveStatus();
 }
 
 function checkLiveStatus() {
   let diff = video.duration - video.currentTime;
-  if (diff <= 7 && !live) {
+  if ((diff <= 7 && !live ) || video.duration==Infinity) {
     live = true;
     $('live-btn').classList.add('live');
   } else if (diff > 10 && live) {
@@ -18,7 +20,8 @@ function checkLiveStatus() {
 }
 
 $('live-btn').onclick = () => {
-  video.currentTime = video.duration - 2;
+  if (video.duration != Infinity)
+    video.currentTime = video.duration - 2;
 };
 
 const volumeButton = $('volume-btn');
